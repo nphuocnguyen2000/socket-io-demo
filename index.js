@@ -15,8 +15,25 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// SOCKET IO
+
 io.on('connection', (socket) => {
     console.log('Connection: ' + socket.id); 
+    // socket.on('disconnect', () => {
+    //   console.log(socket.id + ' disconneted');
+    // })
+    socket.on('client-send-data', (data) => {
+      
+      // send all
+      // io.sockets.emit('server-send-data', data)
+
+      // send comeback
+      // socket.emit('server-send-data', data)
+
+      // send all except for it
+      // socket.broadcast.emit('server-send-data', data)
+
+    })
 })
 
 

@@ -24,15 +24,24 @@ io.on('connection', (socket) => {
     // })
     socket.on('client-send-data', (data) => {
       
-      // send all
+      // send to all connected clients
       // io.sockets.emit('server-send-data', data)
 
       // send comeback
       // socket.emit('server-send-data', data)
 
-      // send all except for it
+      // send to all connected clients excepting the sender
       // socket.broadcast.emit('server-send-data', data)
+      
+      // send number
+    })
 
+    socket.on('send-number', data => {
+      let {n1, n2} = data
+      function sum(n1, n2) {
+        return parseInt(n1) + parseInt(n2)
+      }
+      socket.broadcast.emit('server-send-result-num', sum(n1, n2))
     })
 })
 

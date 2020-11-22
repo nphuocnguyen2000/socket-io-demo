@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // SOCKET IO
-
+var listUsers = []
 io.on('connection', (socket) => {
     console.log('Connection: ' + socket.id); 
     // socket.on('disconnect', () => {
@@ -36,12 +36,31 @@ io.on('connection', (socket) => {
       // send number
     })
 
-    socket.on('send-number', data => {
-      let {n1, n2} = data
-      function sum(n1, n2) {
-        return parseInt(n1) + parseInt(n2)
+    // socket.on('send-number', data => {
+    //   let {n1, n2} = data
+    //   function sum(n1, n2) {
+    //     return parseInt(n1) + parseInt(n2)
+    //   }
+    //   socket.broadcast.emit('server-send-result-num', sum(n1, n2))
+    // })
+
+   
+
+    socket.on('client-register', data => {
+      let {userName} = data
+      if( listUsers.indexOf(userName) >= 0){
+        socket.emit('server-not-register')
       }
-      socket.broadcast.emit('server-send-result-num', sum(n1, n2))
+      else{
+        listUsers.push(userName)
+        socket.userName = userName
+        socket.emit('server-register-success', userName)
+        io.sockets.emit('server-send-list-users', listUsers)
+      }
+    }) 
+
+    socket.on('client-send-chat', data => {
+      io.sockets.emit('server-send-message', {userName: socket.userName, message: data})
     })
 })
 

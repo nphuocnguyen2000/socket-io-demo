@@ -46,6 +46,41 @@
         </div>
     </div>
 
+    <div id="createRoom-wrap" class="container p-5">
+        <h5>Room name</h5>
+        <input id="roomName" type="text">
+        <br>
+        <button id="submitRoomName" class="mt-4">Create</button>
+    </div>
+    <div id="room-wrap" class="container p-5">
+        <div class="row">
+            <div class="col-4 p-2 text-center">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">LIST ROOMS</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-rooms">
+                    
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-8">
+                <h2>Chatting in room</h2>
+                <h4>Room:  <span id="show-nameRoom"></span></h4>
+                <div id="content-box-room" style="border: 1px solid #999; height: 200px; width: 400px; padding: 20px; overflow-y: scroll;">
+                </div>
+                <div id="messageRoom-wrap" class="mt-2">
+                    <h5>Send</h5>
+                    <input id="inputMessageRoom" type="text">
+                    <br>
+                    <button id="submitMessageRoom" class="mt-4">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

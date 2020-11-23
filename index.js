@@ -52,7 +52,8 @@ io.on('connection', (socket) => {
         socket.emit('server-not-register')
       }
       else{
-        listUsers.push(userName)
+        listUsers[listUsers.length] = userName;
+        // listUsers.push(userName)
         socket.userName = userName
         socket.emit('server-register-success', userName)
         io.sockets.emit('server-send-list-users', listUsers)
@@ -62,7 +63,21 @@ io.on('connection', (socket) => {
     socket.on('client-send-chat', data => {
       io.sockets.emit('server-send-message', {userName: socket.userName, message: data})
     })
-})
+
+    // rooms
+
+    socket.on('create-room', data => {
+      socket.join(data)
+      socket.nameRoom = data
+
+      socket.emit('show-name-rooms', socket.nameRoom)
+     
+    })
+    socket.on('send-message-room', data => {
+      io.sockets.to(socket.nameRoom).emit('server-send-message-roommm', data)
+    })
+
+}) 
 
 
 app.get('/', (req, res) => {

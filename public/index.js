@@ -19,7 +19,7 @@ socket.on('server-register-success', (data) => {
 })
 
 socket.on('server-send-list-users', data => {
-    // $("#table-content").html("")
+    $("#table-content").html("")
     data.forEach(i => {
         $("#table-content").append(
             "<tr>" +
@@ -38,3 +38,15 @@ socket.on('server-send-message', data => {
         "</span></div>"
     )
 })
+socket.on('server-send-message-roommm', data => {
+    console.log('data', data);
+    $('#content-box-room').append(
+        `
+        <div> ${data} </div>
+        `
+    )
+})
+socket.on('show-name-rooms', data => {
+    $('#show-nameRoom').append(data)
+})
+

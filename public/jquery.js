@@ -18,6 +18,15 @@ $(document).ready(function () {
         e.preventDefault();
         socket.emit('client-send-chat', $("#inputChat").val())
     });
+
+    $('#submitRoomName').click(function (e) { 
+        e.preventDefault();
+        socket.emit('create-room', $("#roomName").val())
+    });
+    $('#submitMessageRoom').click(function (e) {
+        e.preventDefault();
+        socket.emit('send-message-room', $("#inputMessageRoom").val())
+    })
     $('#register-wrap').show()
     $('#content-wrap').hide()
 

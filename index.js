@@ -1,5 +1,6 @@
 const express       = require('express')
 const bodyParser    = require('body-parser')
+const { log } = require('console')
 const app           = express()
 let server          = require("http").Server(app)
 const io            = require('socket.io')(server)
@@ -69,7 +70,10 @@ io.on('connection', (socket) => {
     socket.on('create-room', data => {
       socket.join(data)
       socket.nameRoom = data
-
+      console.log('room', socket.adapter.rooms);
+      for(var room in socket.adapter.rooms){
+        console.log(room);
+      }
       socket.emit('show-name-rooms', socket.nameRoom)
      
     })

@@ -12,6 +12,7 @@ socket.on('server-not-register', () => {
     alert('Username đã tồn tại')
 })
 
+
 socket.on('server-register-success', (data) => {
     $('#show-userName').append(data)
     $('#register-wrap').hide(1000)

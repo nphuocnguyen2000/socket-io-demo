@@ -1,4 +1,4 @@
-let socket = io("http://localhost:5000/")
+let socket = io("https://thomas-socket-demo.herokuapp.com/")
 
 // socket.on('server-send-data', (data) => {
 //     $('#content').append(data + ',')

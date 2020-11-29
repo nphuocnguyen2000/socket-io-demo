@@ -74,8 +74,9 @@ io.on('connection', (socket) => {
       for(var room in socket.adapter.rooms){
         console.log(room);
       }
+      
       socket.emit('show-name-rooms', socket.nameRoom)
-     
+    //  commit 1
     })
     socket.on('send-message-room', data => {
       io.sockets.to(socket.nameRoom).emit('server-send-message-roommm', data)

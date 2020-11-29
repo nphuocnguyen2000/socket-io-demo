@@ -79,7 +79,6 @@ io.on('connection', (socket) => {
     socket.on('send-message-room', data => {
       io.sockets.to(socket.nameRoom).emit('server-send-message-roommm', data)
     })
-
     
 }) 
 
